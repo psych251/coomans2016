@@ -1,0 +1,104 @@
+---
+title: "Reproducibility Report for study \"Distinguishing Fast and Slow Processes in Accuracy - Response Time Data\" by Coomans F, Hofman A, Brinkhuis M, van der Maas HLJ, and Maris G (2016, PLoS ONE 11(5): e0155149. https://doi.org/10.1371/journal.pone.0155149)"
+author: "Reproducibility Project Author: Michael Hardy, hardym@stanford.edu"
+date: "`r format(Sys.time(), '%B %d, %Y')`"
+output:
+  html_document:
+    toc: yes
+    toc_depth: 3
+    toc_float:
+      collapsed: false
+---
+
+<!-- Reproducibility reports should all use this template to standardize reporting across projects. These reports will be public supplementary materials that accompany the summary report(s) of the aggregate results. -->
+
+## Introduction
+Coomans et al. explore and compare models that seek to measure the latent variable of problem-solving ability by analyzing speed in solution finding in addition to respondents' accuracy, which is typically the only measure used in Item Response Theory. Their paper evaluates new and commonly used psychometric models when using response-time by explicating how the underlying latent structure is represented in each. With the dramatic increase in availability of participant process data originating from increased use of technology during educational assessments, these methods also shed light into how other assessment process data might be modeled and used to better measure the desired underlying latent traits. The authors analyze item-pairs: two assessment items that seek to measure the same underlying trait. The authors explore these models using empirical data across a variety of cognitive tasks, provide justification for their selection of their recommended model, and supplementally evaluate the implications of using these models by demonstrating through error-analyses to highlight qualitative differences in erroneous responses based on response speed. 
+
+**Key Analyses** The most important reproduction analyses are those of tables 3 and 4, which are used to justify the conclusions of the paper. No additional analyses are planned yet for this paper.
+
+### Justification for choice of study
+
+This study is of interest, as it represents an explicit link between psychometrics and cognitive psychology which are both subjects of interest. The paper is written by some of the most respected psychometricians in the field. While written in 2017, its content is more relevant today than ever, as it compares methods of incorporating process data into understanding latent variables targeted by Item Response Theory (IRT). The study uses data from a variety of domains including arithmetic, language learning, game-playing problems, and chess to demonstrate the generalizability of the models. 
+
+I have no formal training in psychometrics, IRT, nor measurement theory, so this paper represents the opportunity to learn some of these concepts from some of the best researchers in the field using empirical data from multiple sources. I am interested in learning these foundations, and how world-class researchers navigate solving a novel, relevant problem with these tools.
+
+### Anticipated challenges
+
+As mentioned, I have no formal training in the branches of statistics involved, so I anticipate replicating the psychometric procedures may be very challenging for me. 
+
+### Links
+
+Project repository (on Github): https://github.com/psych251/coomans2016
+
+Original paper (as hosted in your repo): https://github.com/psych251/coomans2016/blob/main/original_paper/distinguishing_fast_slow_article.pdf 
+
+## Methods
+
+### Description of the steps required to reproduce the results
+
+Please describe all the steps necessary to reproduce the key result(s) of this study. 
+
+1. Gain access to the oefenweb_nl_app database (where the raw data is stored)
+2. Create a SQL query for collecting the data from the various assessments from within R
+3. Apply the coding described in the paper to classify item relationships and create item pairs
+4. Reconstruct tables 2 and 5 found in paper and any needed contingency tables using item pairs
+5. Create functions in R that represent the mathematical models describing the items and their relationships, including the mathematical relationships described in tables 6, 7, 8, 9, and 10.
+6. Calculate Maximum Likelihood from contingency tables to find estimates for each of the models' parameters using eq. 16, 17, 23, 30
+7. Calculate Chi-squared values for the models and reproduce tables 3 and 4
+8. Compare results with original paper
+
+
+### Differences from original study
+
+No explicit differences found.
+
+## Project Progress Check 1
+
+### Measure of success
+
+Please describe the outcome measure for the success or failure of your reproduction and how this outcome will be computed.
+
+
+### Pipeline progress
+
+Earlier in this report, you described the steps necessary to reproduce the key result(s) of this study. Please describe your progress on each of these steps (e.g., data preprocessing, model fitting, model evaluation).
+
+
+## Results
+
+### Data preparation
+
+Data preparation following the analysis plan.
+	
+```{r include=F}
+### Data Preparation
+
+#### Load Relevant Libraries and Functions
+
+#### Import data
+
+#### Data exclusion / filtering
+
+#### Prepare data for analysis - create columns etc.
+```
+
+### Key analysis
+
+The analyses as specified in the analysis plan.  
+
+*Side-by-side graph with original graph is ideal here*
+
+###Exploratory analyses
+
+Any follow-up analyses desired (not required).  
+
+## Discussion
+
+### Summary of Reproduction Attempt
+
+Open the discussion section with a paragraph summarizing the primary result from the key analysis and assess whether you successfully reproduced it, partially reproduced it, or failed to reproduce it.  
+
+### Commentary
+
+Add open-ended commentary (if any) reflecting (a) insights from follow-up exploratory analysis of the dataset, (b) assessment of the meaning of the successful or unsuccessful reproducibility attempt - e.g., for a failure to reproduce the original findings, are the differences between original and present analyses ones that definitely, plausibly, or are unlikely to have been moderators of the result, and (c) discussion of any objections or challenges raised by the current and original authors about the reproducibility attempt (if you contacted them).  None of these need to be long.
