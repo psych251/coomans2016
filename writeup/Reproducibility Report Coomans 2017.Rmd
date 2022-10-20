@@ -1,5 +1,6 @@
 ---
-title: "Reproducibility Report for study \"Distinguishing Fast and Slow Processes in Accuracy - Response Time Data\" by Coomans F, Hofman A, Brinkhuis M, van der Maas HLJ, and Maris G (2016, PLoS ONE 11(5): e0155149. https://doi.org/10.1371/journal.pone.0155149)"
+title: "Reproducibility Report for study \"Distinguishing Fast and Slow Processes in Accuracy - Response Time Data\" by Coomans F, Hofman A, Brinkhuis M, van der Maas HLJ, and Maris G"
+subtitle: " (2016, PLoS ONE 11(5): e0155149. https://doi.org/10.1371/journal.pone.0155149)"
 author: "Reproducibility Project Author: Michael Hardy, hardym@stanford.edu"
 date: "`r format(Sys.time(), '%B %d, %Y')`"
 output:
@@ -39,19 +40,27 @@ Original paper (as hosted in your repo): https://github.com/psych251/coomans2016
 
 Please describe all the steps necessary to reproduce the key result(s) of this study. 
 
-1. Gain access to the oefenweb_nl_app database (where the raw data is stored)
-2. Create a SQL query for collecting the data from the various assessments from within R
-3. Apply the coding described in the paper to classify item relationships and create item pairs
+1. Gain access to the data
+    a. Get access to oefenweb_nl_app database (where the raw data is stored)
+    b. Create a SQL query for collecting the data from the various assessments
+    c. Pull data into R
+2. Organize the data
+    a. Clean and "tidy" the data using tidyverse
+    b. Apply the coding described in the paper to classify item relationships, 
+    c. identify and create item pairs based on the criteria provided in the paper.
+3. Understand the mathematical relationships found in contingency tables for item pairs
 4. Reconstruct tables 2 and 5 found in paper and any needed contingency tables using item pairs
-5. Create functions in R that represent the mathematical models describing the items and their relationships, including the mathematical relationships described in tables 6, 7, 8, 9, and 10.
+5. Understand the mathematical relationships of the four different models
+6. Create functions in R that represent the mathematical models describing the items and their relationships, including the mathematical relationships described in tables 6, 7, 8, 9, and 10.
 6. Calculate Maximum Likelihood from contingency tables to find estimates for each of the models' parameters using eq. 16, 17, 23, 30
-7. Calculate Chi-squared values for the models and reproduce tables 3 and 4
+7. Understand the mathematical relationships represented in the tests used and calculate Chi-squared values for the models and reproduce tables 3 and 4
 8. Compare results with original paper
+9. Repeat steps 4, 5, 7, and 8 for the chess data set, which are slightly different as I understand it.
 
 
 ### Differences from original study
 
-No explicit differences found.
+No differences from the original paper are planned. I intend to use the original data, definitions, and their formulas for reproduction.
 
 ## Project Progress Check 1
 
@@ -62,8 +71,7 @@ Please describe the outcome measure for the success or failure of your reproduct
 
 ### Pipeline progress
 
-Earlier in this report, you described the steps necessary to reproduce the key result(s) of this study. Please describe your progress on each of these steps (e.g., data preprocessing, model fitting, model evaluation).
-
+At the publishing of this version of the report, I have completed step 1, and am currently about 30% through step 2, though I have begun, as part of the process, to work on steps 3-5 as I go (probably about 20% each). I hope to get to 90% on all of the steps this weekend if I have time.
 
 ## Results
 
