@@ -11,7 +11,7 @@
 
 <meta name="author" content="Reproducibility Project Author: Michael Hardy, hardym@stanford.edu" />
 
-<meta name="date" content="2022-10-20" />
+<meta name="date" content="2022-10-28" />
 
 <title>Reproducibility Report for study “Distinguishing Fast and Slow Processes in Accuracy - Response Time Data” by Coomans F, Hofman A, Brinkhuis M, van der Maas HLJ, and Maris G</title>
 
@@ -1503,7 +1503,7 @@ Data” by Coomans F, Hofman A, Brinkhuis M, van der Maas HLJ, and Maris
 G</h1>
 <h3 class="subtitle">(2016, PLoS ONE 11(5): e0155149. <a href="https://doi.org/10.1371/journal.pone.0155149" class="uri">https://doi.org/10.1371/journal.pone.0155149</a>)</h3>
 <h4 class="author">Reproducibility Project Author: Michael Hardy, <a href="mailto:hardym@stanford.edu" class="email">hardym@stanford.edu</a></h4>
-<h4 class="date">October 20, 2022</h4>
+<h4 class="date">October 28, 2022</h4>
 
 </div>
 
@@ -1616,16 +1616,20 @@ the original data, definitions, and their formulas for reproduction.</p>
 <h2>Project Progress Check 1</h2>
 <div id="measure-of-success" class="section level3">
 <h3>Measure of success</h3>
-<p>Please describe the outcome measure for the success or failure of
-your reproduction and how this outcome will be computed.</p>
+<p>Measure of success will be comparisons of the data found in their
+Table 3 and Table 4, since this is what is used to draw their
+conclusion.</p>
 </div>
 <div id="pipeline-progress" class="section level3">
 <h3>Pipeline progress</h3>
-<p>At the publishing of this version of the report, I have completed
-step 1, and am currently about 30% through step 2, though I have begun,
-as part of the process, to work on steps 3-5 as I go (probably about 20%
-each). I hope to get to 90% on all of the steps this weekend if I have
-time.</p>
+<p>I can now reproduce Table 3 using their code. However, I believe I
+have found a filtering error on their part, leading them to accidentally
+throw out most of their data. So I re-ran the code for Table 3,
+correcting by including all item pairs as they describe, and it changes
+the results. This however, does NOT change their overall conclusions,
+but it <em>would</em> change the ‘Discussion’ section of their
+paper.</p>
+<p>I have included my data preparation and overall results below.</p>
 </div>
 </div>
 <div id="results" class="section level2">
@@ -1633,13 +1637,21 @@ time.</p>
 <div id="data-preparation" class="section level3">
 <h3>Data preparation</h3>
 <p>Data preparation following the analysis plan.</p>
+<pre class="r"><code>table3</code></pre>
+<pre><code>##           domain       CIM CDM      C2P.3I    C3P.2I
+## 1 multiplication 1.0000000   1 0.000000000 0.6275862
+## 2       division 1.0000000   1 0.002298851 0.3816092
+## 3       addition 0.7057471   1 0.006896552 0.1034483
+## 4    subtraction 0.7931034   1 0.002298851 0.3241379</code></pre>
 </div>
 <div id="key-analysis" class="section level3">
 <h3>Key analysis</h3>
 <p>The analyses as specified in the analysis plan.</p>
 <p><em>Side-by-side graph with original graph is ideal here</em></p>
 <p>###Exploratory analyses</p>
-<p>Any follow-up analyses desired (not required).</p>
+<p>I am able to reproduce their results using their code, but I think I
+have found an error in their code that reduces their sample of item
+pairs.</p>
 </div>
 </div>
 <div id="discussion" class="section level2">
