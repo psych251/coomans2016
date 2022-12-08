@@ -1,6 +1,6 @@
 ---
-title: "Reproducibility Report for study \"Distinguishing Fast and Slow Processes in Accuracy - Response Time Data\" by Coomans F, Hofman A, Brinkhuis M, van der Maas HLJ, and Maris G"
-subtitle: " (2016, PLoS ONE 11(5): e0155149. https://doi.org/10.1371/journal.pone.0155149)"
+title: "Reproducibility Report for study \"Distinguishing Fast and Slow Processes in Accuracy - Response Time Data\""
+subtitle: "by Coomans F, Hofman A, Brinkhuis M, van der Maas HLJ, and Maris G (2016, PLoS ONE 11(5): e0155149. https://doi.org/10.1371/journal.pone.0155149)"
 author: "Reproducibility Project Author: Michael Hardy, hardym@stanford.edu"
 date: "`r format(Sys.time(), '%B %d, %Y')`"
 output:
@@ -11,28 +11,20 @@ output:
       collapsed: false
 ---
 
-<!-- Reproducibility reports should all use this template to standardize reporting across projects. These reports will be public supplementary materials that accompany the summary report(s) of the aggregate results. -->
-
 ## Introduction
-Coomans et al. explore and compare models that seek to measure the latent variable of problem-solving ability by analyzing speed in solution finding in addition to respondents' accuracy, which is typically the only measure used in Item Response Theory. Their paper evaluates new and commonly used psychometric models when using response-time by explicating how the underlying latent structure is represented in each. With the dramatic increase in availability of participant process data originating from increased use of technology during educational assessments, these methods also shed light into how other assessment process data might be modeled and used to better measure the desired underlying latent traits. The authors analyze item-pairs: two assessment items that seek to measure the same underlying trait. The authors explore these models using empirical data across a variety of cognitive tasks, provide justification for their selection of their recommended model, and supplementally evaluate the implications of using these models by demonstrating through error-analyses to highlight qualitative differences in erroneous responses based on response speed. 
+Coomans et al. explore and compare latent variable models that seek to measure problem-solving ability more completely by including speed of solution finding in addition to respondents' accuracy, which is typically the only measure used in Item Response Theory. Their paper evaluates new and commonly used psychometric models when using response-time by explicating how the underlying latent structure is represented in each. With the dramatic increase in availability of participant process data originating from increased use of technology during educational assessments, these methods also shed light into how other assessment process data might be modeled and used to better measure the desired underlying latent traits. The authors analyze item-pairs: two assessment items that seek to measure the same underlying trait. The authors explore these models using empirical data across a variety of cognitive tasks, provide justification for their selection of their recommended model, and supplementally evaluate the implications of using these models by demonstrating through error-analyses to highlight qualitative differences in erroneous responses based on response speed. 
 
-**Key Analyses** The most important reproduction analyses are those of tables 3 and 4, which are used to justify the conclusions of the paper. No additional analyses are planned yet for this paper.
+**Key Analyses** The most important reproduction analyses are those of tables 3 and 4, which are used to justify the conclusions of the paper. No additional analyses were initially planned for this paper, but additional analyses were run post-reproduction that enhance the model interpretability.
 
 ### Justification for choice of study
 
-This study is of interest, as it represents an explicit link between psychometrics and cognitive psychology which are both subjects of interest. The paper is written by some of the most respected psychometricians in the field. While written in 2017, its content is more relevant today than ever, as it compares methods of incorporating process data into understanding latent variables targeted by Item Response Theory (IRT). The study uses data from a variety of domains including arithmetic, language learning, game-playing problems, and chess to demonstrate the generalizability of the models. 
-
-I have no formal training in psychometrics, IRT, nor measurement theory, so this paper represents the opportunity to learn some of these concepts from some of the best researchers in the field using empirical data from multiple sources. I am interested in learning these foundations, and how world-class researchers navigate solving a novel, relevant problem with these tools.
-
-### Anticipated challenges
-
-As mentioned, I have no formal training in the branches of statistics involved, so I anticipate replicating the psychometric procedures may be very challenging for me. 
+This study represents an explicit link between psychometrics and cognitive psychology, written by respected psychometricians. While written in 2017, its content is more relevant today than ever, as it compares methods of incorporating process data into understanding latent variables targeted by Item Response Theory (IRT). The study uses data from a variety of domains including arithmetic, language learning, game-playing problems, and chess to demonstrate the generalizability of the models. This reproduction offers the author the opportunity to learn some of these concepts from some of the best researchers in the field using empirical data from multiple domain sources.
 
 ### Links
 
 Project repository (on Github): https://github.com/psych251/coomans2016
 
-Original paper (as hosted in your repo): https://github.com/psych251/coomans2016/blob/main/original_paper/distinguishing_fast_slow_article.pdf 
+Original paper (as hosted in github): https://github.com/psych251/coomans2016/blob/main/original_paper/distinguishing_fast_slow_article.pdf 
 
 ## Methods
 
@@ -41,552 +33,403 @@ Original paper (as hosted in your repo): https://github.com/psych251/coomans2016
 Please describe all the steps necessary to reproduce the key result(s) of this study. 
 
 1. Gain access to the data
-    a. Get access to oefenweb_nl_app database (where the raw data is stored)
-    b. Create a SQL query for collecting the data from the various assessments
-    c. Pull data into R
 2. Organize the data
     a. Clean and "tidy" the data using tidyverse
     b. Apply the coding described in the paper to classify item relationships, 
     c. identify and create item pairs based on the criteria provided in the paper.
-3. Understand the mathematical relationships found in contingency tables for item pairs
-4. Reconstruct tables 2 and 5 found in paper and any needed contingency tables using item pairs
-5. Understand the mathematical relationships of the four different models
-6. Create functions in R that represent the mathematical models describing the items and their relationships, including the mathematical relationships described in tables 6, 7, 8, 9, and 10.
-6. Calculate Maximum Likelihood from contingency tables to find estimates for each of the models' parameters using eq. 16, 17, 23, 30
-7. Understand the mathematical relationships represented in the tests used and calculate Chi-squared values for the models and reproduce tables 3 and 4
-8. Compare results with original paper
-9. Repeat steps 4, 5, 7, and 8 for the chess data set.
-
+3. Create functions in R that represent the mathematical models describing the items and their relationships, including the mathematical relationships described in tables 6, 7, 8, 9, and 10.
+4. Calculate Maximum Likelihood estimates for each of the models' parameters using eq. 16, 17, 23, 30 (these equations are identified in the reproduction code)
+5. Repeat step 2 for the chess data set, and re-apply steps 3 and 4.
+6. Reproduce tables 3 and 4 and compare results with original paper
 
 ### Differences from original study
 
-No differences from the original paper are planned. I intend to use the original data, definitions, and their formulas for reproduction.
-
-## Project Progress Check 1
+No differences from the original paper were planned. The original data, definitions, and their formulas are used for reproduction. However, notes and code from an additional analysis completed post-reproduction are included in the discussion below.
 
 ### Measure of success
 
 Measure of success will be comparisons of the data found in their Table 3 and Table 4, since this is what is used to draw their conclusion.
 
-
-### Pipeline progress
-All pipeline steps are completed.
-
 ## Results
 
 ### Data preparation
 
-Data preparation following the analysis plan.
+Data preparation followed the analysis plan above and as described on pages 12 and 13 of the paper. 
 	
 ```{r analysis, results='hide', warning=FALSE, message=FALSE}
 ### Data Preparation
-
 #### Load Relevant Libraries and Functions
-require(rootSolve)
+library(rootSolve)
 library(tidyr)
 library(dplyr)
-library(stringr) # useful for some string manipulation
+library(stringr)
 library(ggplot2)
 library(data.table)
 setwd("~/Library/CloudStorage/OneDrive-Stanford/PSY251/Reproducibility/Fast_slow_processes/osfstorage-archive")
-assessment.list = c("multiplication","division","addition","subtraction","set","letterchaos","chess")
-table3.assessment.list = assessment.list[1:4]
-model.list = c("CIM","CDM","C2P&3I","C3P&2I")
-table3 = data.frame(matrix(ncol=5,nrow=4, dimnames=list(NULL, c("domain", model.list))))
-table3$domain = table3.assessment.list
 
-table4.assessment.list = assessment.list[5:7]
-table4 = data.frame(matrix(ncol=5,nrow=3, dimnames=list(NULL, c("domain", model.list))))
-table4$domain = table4.assessment.list
+## if set to true, the threshold for whether a response is determined to be
+## fast or slow is set at the item level as the mean time for that item
+## for the non-chess datasets instead of 10 seconds. See discussion below
+use_mean_fast_slow_threshold <- F
+## If set to true, instances of retesting item pairs on a different day will be 
+## included in the dataset
+include_retesters <- F
 
-for (asmt in 1:length(assessment.list)){
-  assessment = assessment.list[asmt]
-  load(str_c(getwd(),"/",assessment,".RData"))
-  # data is stored as addition.RData, subtraction.RData, multiplication.RData, division.RData, set.RData and letterchaos.RData
-  ## Item score data is found in the res_max2 data.frame.  Item pairs are found in the the combpair table.
-  print(paste("Now computing for", assessment))
-  n.item.pairs=ncol(combpair)
-  
-  cond.dep.par=matrix(NA,n.item.pairs,7)
-  cond.dep.X=rep(NA,n.item.pairs)
-  cond.ind.par=matrix(NA,n.item.pairs,10)
-  cond.ind.X=rep(NA,n.item.pairs)
-  m.2P.3I_par=matrix(NA,n.item.pairs,14)
-  m.2P.3I_X=matrix(NA,n.item.pairs)
-  m.3P.2I.par=matrix(NA,n.item.pairs,14)
-  m.3P.2I.X=matrix(NA,n.item.pairs)
-  
-  countpair=0 # count pairs with more than 500 observations
-  nosolution=rep(0,n.item.pairs)
-  
-  for(pair in 1:n.item.pairs){
-    #####################################
-    # Extract item pair contingency table
-    #####################################
-    if (pair %% 50 ==0){
-      print(paste("Pair",pair,"computing."))
-    }
-    item.1=combpair[1,pair]
-    item.2=combpair[2,pair]
+## Set up the final table structures for tables 3 and 4
+assessment.list <- c("multiplication", "division", "addition", "subtraction", "set", "letterchaos", "chess")
+model.list <- c("CIM", "CDM", "C2P&3I", "C3P&2I")
+table3.assessment.list <- assessment.list[1:4]
+table4.assessment.list <- assessment.list[5:7]
+table3 <- data.frame(matrix(ncol = 5, nrow = 4, dimnames = list(NULL, c("domain", model.list))))
+table4 <- data.frame(matrix(ncol = 5, nrow = 3, dimnames = list(NULL, c("domain", model.list))))
+table3$domain <- table3.assessment.list
+table4$domain <- table4.assessment.list
 
-    #####################################
-    # This is my code for item pair creation (except chess)
-    #####################################      
-    df.1 = res_max2 %>% filter(item_id == item.1) %>%
-      filter((score != 0)|(response_in_milliseconds == 20000)) %>%
-      arrange(days,user_id, created_UNIX) %>%
-      distinct(user_id,days, .keep_all = TRUE)
-    df.2 = res_max2 %>% filter(item_id == item.2) %>%
-      filter((score != 0)|(response_in_milliseconds == 20000)) %>%
-      arrange(days,user_id, created_UNIX)  %>%
-      distinct(user_id,days, .keep_all = TRUE)
-    respairqm2 = inner_join(df.1, df.2, by=c("user_id","days"), suffix=c("_1","_2"))%>%
-      arrange(days,user_id, desc(created_UNIX_1)) %>%
-      distinct(user_id,.keep_all = TRUE)      
-    
-    TMP=floor((1+respairqm2[,c('score_1','score_2')])*2)
-    dist.table=table(factor(x=TMP[,1],levels=c(0,1,2,3)),factor(x=TMP[,2],levels=c(0,1,2,3)))
-    A=dist.table/sum(dist.table)
-    
-    ## only keeping item pairs if there are at least 500 total observations
-    if(sum(dist.table)>500){  
-      countpair=countpair+1
-      #####################
-      # Estimation of CDM
-      #####################
-      pi0=A[1,1] #pi0
-      pi12=A[1,2]+A[2,1] #pi12
-      pi1=A[1,3]+A[2,2]+A[3,1] #pi1
-      pi32=A[1,4]+A[2,3]+A[3,2]+A[4,1] #pi32
-      pi2=A[2,4]+A[3,3]+A[4,2] #pi2
-      pi52=A[3,4]+A[4,3] #pi52
-      
-      f.cond.dep=function(x){
-        pi12*x/(2+2*x)+pi1*(x^2+x/2)/(1+x+x^2)+pi32*(3/2*x^3+x^2+x/2)/(1+x+x^2+x^3)+pi2*(3/2*x^2+x+1/2)/(x^2+x+1)+pi52*(3/2*x+1)/(x+1)+3*A[4,4]/2-sum(A[,2])/2-sum(A[,3])-3*sum(A[,4])/2
-      }
-      x=multiroot(f=f.cond.dep,start=1,positive=TRUE,verbose = F)$root
-  
-      model.cond.dep=c(pi0,
-                       pi12/(1+x),
-                       pi1/(1+x+x^2),
-                       pi32/(1+x+x^2+x^3),
-                       pi12*x/(1+x),
-                       pi1*x/(1+x+x^2),
-                       pi32*x/(1+x+x^2+x^3),
-                       pi2/(1+x+x^2),
-                       pi1*x^2/(1+x+x^2),
-                       pi32*x^2/(1+x+x^2+x^3),
-                       pi2*x/(1+x+x^2),
-                       pi52/(1+x),
-                       pi32*x^3/(1+x+x^2+x^3),
-                       pi2*x^2/(1+x+x^2),
-                       pi52*x/(1+x))
-      model.cond.dep=c(model.cond.dep,1-sum(model.cond.dep))
-      est_TS=matrix(model.cond.dep,4,4)*sum(dist.table)  
-      ## Create model contingency table
-      if((length(which(est_TS<1))==0)&&(length(which(est_TS>=5)>=13))){cond.dep.X[pair]=sum((est_TS-dist.table)^2/est_TS)}   # no expected frequencies under 1 and at least 13 of 16 cells (~ 80 % of the cells) has an expected frequency that is at least 5
-  
-      ############################
-      # Estimation of CIM
-      ############################
-      pi02=A[1,1] #pi02
-      pi01=A[1,2]+A[2,1] #pi01
-      pi10=A[2,3]+A[3,2] #pi10
-      pi21=A[3,4]+A[4,3] #pi21
-      pi11=A[1,3]+A[2,4]+A[3,1]+A[4,2] #pi11
-      pi12=A[1,4]+A[4,1] #pi12
-      pi00=A[2,2] #pi00
-      pi20=A[3,3] #pi20
-      
-      f.cond.ind=function(x){
-      c(pi11*(x[1]+x[1]*x[2])/(1+x[1]+x[2]+x[1]*x[2])+pi10*x[1]/(1+x[1])+pi12*x[1]/(1+x[1])+pi20+pi21+A[4,4]-sum(A[,3])-sum(A[,4]),
-        pi11*(x[2]+x[1]*x[2])/(1+x[1]+x[2]+x[1]*x[2])+pi01*x[2]/(1+x[2])+pi21*x[2]/(1+x[2])+pi02+pi12+A[4,4]-sum(A[,1])-sum(A[,4])
-      )
-      }
-      root=multiroot(f=f.cond.ind,start=c(1,1),positive=TRUE, verbose = F)$root
-      alpha1=root[1] #alpha1
-      alpha2=root[2] #alpha2
-  
-      model.cond.ind=c(pi02,
-                       pi01*alpha2/(1+alpha2),
-                       pi11*alpha2/(1+alpha1+alpha2+alpha1*alpha2),
-                       pi12/(1+alpha1),
-                       pi01/(1+alpha2),
-                       pi00,
-                       pi10/(1+alpha1),
-                       pi11/(1+alpha1+alpha2+alpha1*alpha2),
-                       pi11*alpha1/(1+alpha1+alpha2+alpha1*alpha2),
-                       pi10*alpha1/(1+alpha1),
-                       pi20,
-                       pi21/(1+alpha2),
-                       pi12*alpha1/(1+alpha1),
-                       pi11*alpha1*alpha2/(1+alpha1+alpha2+alpha1*alpha2),
-                       pi21*alpha2/(1+alpha2))
-      
-      est_TH=matrix(c(model.cond.ind,1-sum(model.cond.ind)),4,4)*sum(dist.table)  
-      ## Create model contingency table
-      if((length(which(est_TH<1))==0)&&(length(which(est_TH>=5)>=13))){cond.ind.X[pair]=sum((est_TH-dist.table)^2/est_TH)}
-  
-      ############################
-      # Estimation of 2P&3I
-      ############################
-      phi1=A[1,1] #phi1
-      phi2=A[1,4]+A[4,1] #phi2
-      phi4=A[2,2] #phi4
-      phi5=A[2,3]+A[3,2] #phi5
-      phi6=A[3,3] #phi6
-      phi7=A[1,2] #phi7
-      phi8=A[1,3]+A[4,2] #phi8
-      phi9=A[4,3] #phi9
-      phi10=A[2,1] #phi10
-      phi11=A[2,4]+A[3,1] #phi11
-      phi12=A[3,4] #phi12
-      
-      f_m.2P.3I=function(x){
-        c((A[3,1]+A[4,1])/x[1]-(phi2)/(1+x[1])-(phi11)*x[2]/(x[1]*x[2]+x[3]),
-          (A[3,1]+A[3,2])/x[2]-(phi5)/(1+x[2])-(phi11)*x[1]/(x[1]*x[2]+x[3]),
-          (A[2,4]+A[4,2])/x[3]-(phi8)/(1+x[3])-(phi11)/(x[1]*x[2]+x[3]))
-      }
-      S1=1
-      S2=1
-      counter=0
-      while(((S1>0)|(S2>0))&(counter<500)){ 
-        root=multiroot(f=f_m.2P.3I,start=runif(3),positive=TRUE, verbose = F)$root
-        S1=sum(root==c(0,0,0))
-        S2=sum(root>250)
-        counter=counter+1
-      }
-      if(counter>=500){nosolution[pair]=1}
-      if(counter<500){
-        alpha1=root[1] #alpha1
-        alpha2=root[2] #alpha2
-        alpha3=root[3] #alpha3
-        model_m.2P.3I=c(phi1,
-                        phi7,
-                        phi8/(1+alpha3),
-                        phi2/(1+alpha1),
-                        phi10,
-                        phi4,
-                        phi5/(1+alpha2),
-                        phi11*alpha3/(alpha1*alpha2+alpha3),
-                        phi11*alpha1*alpha2/(alpha1*alpha2+alpha3),
-                        phi5*alpha2/(1+alpha2),
-                        phi6,
-                        phi12,
-                        phi2*alpha1/(1+alpha1),
-                        phi8*alpha3/(1+alpha3),
-                        phi9)
-        est_Tm.2P.3I=matrix(c(model_m.2P.3I,1-sum(model_m.2P.3I)),4,4,byrow=TRUE)*sum(dist.table)
-        ## Create model contingency table
-        if((length(which(est_Tm.2P.3I<1))==0)&&(length(which(est_Tm.2P.3I>=5)>=13))){m.2P.3I_X[pair]=sum((est_Tm.2P.3I-dist.table)^2/est_Tm.2P.3I)}
-      }
-      ############################
-      # Estimation of 3P&2I
-      ############################
-      phi1=A[1,1] #phi1
-      phi2=A[1,4]+A[4,1] #phi2
-      phi4=A[2,2] #phi4
-      phi5=A[2,3]+A[3,2] #phi5
-      phi6=A[3,3] #phi6
-      phi7=A[1,2] #phi7
-      phi8=A[1,3] #phi8
-      phi9=A[4,2] #phi9
-      phi10=A[4,3] #phi10
-      phi11=A[2,1] #phi11
-      phi12=A[2,4] #phi12
-      phi13=A[3,1] #phi13
-      phi14=A[3,4] #phi14
-      alpha=(A[3,2]+A[4,1])/(A[1,4]+A[2,3]) #alpha
-      
-      model.m.3P.2I=c(phi1,
-                      phi7,
-                      phi8,
-                      phi2/(1+alpha),
-                      phi11,
-                      phi4,
-                      phi5/(1+alpha),
-                      phi12,
-                      phi13,
-                      phi5*alpha/(1+alpha),
-                      phi6,
-                      phi14,
-                      phi2*alpha/(1+alpha),
-                      phi9,
-                      phi10)
-      model.m.3P.2I=c(model.m.3P.2I,1-sum(model.m.3P.2I))
-      est_Tm.3P.2I=matrix(model.m.3P.2I,4,4,byrow=TRUE)*sum(dist.table)
-      ## Create model contingency table
-      if((length(which(est_Tm.3P.2I<1))==0)&&(length(which(est_Tm.3P.2I>=5)>=13))){m.3P.2I.X[pair]=sum((est_Tm.3P.2I-dist.table)^2/est_Tm.3P.2I)}
-    }
+## Pass a contingency table of observed scores to each function and they
+## will return the contingency table of model predicted scores
+c2p3i.model <- function(dist.table) {
+  ############################
+  # Estimation of 2P&3I Model
+  ############################
+  ## The variables correspond to the variables in table 7
+  ## where A is the observed proportion contingency table
+  A <- dist.table / sum(dist.table)
+  phi1 <- A[1, 1] # phi1
+  phi2 <- A[1, 4] + A[4, 1] # phi2
+  phi4 <- A[2, 2] # phi4
+  phi5 <- A[2, 3] + A[3, 2] # phi5
+  phi6 <- A[3, 3] # phi6
+  phi7 <- A[1, 2] # phi7
+  phi8 <- A[1, 3] + A[4, 2] # phi8
+  phi9 <- A[4, 3] # phi9
+  phi10 <- A[2, 1] # phi10
+  phi11 <- A[2, 4] + A[3, 1] # phi11
+  phi12 <- A[3, 4] # phi12
+
+  ## The three MLE equations in Eq. 16 for three roots
+  eq.16 <- function(x) {
+    c(
+      (A[3, 1] + A[4, 1]) / x[1] - (phi2) / (1 + x[1]) - (phi11) * x[2] / (x[1] * x[2] + x[3]),
+      (A[3, 1] + A[3, 2]) / x[2] - (phi5) / (1 + x[2]) - (phi11) * x[1] / (x[1] * x[2] + x[3]),
+      (A[2, 4] + A[4, 2]) / x[3] - (phi8) / (1 + x[3]) - (phi11) / (x[1] * x[2] + x[3])
+    )
   }
-  if (asmt < 5){
-    table3[asmt,"CDM"] = length(which(cond.dep.X>26.12))/sum(!is.na(cond.dep.X))
-    table3[asmt,"CIM"] = length(which(cond.ind.X>20.52))/sum(!is.na(cond.ind.X))
-    table3[asmt,"C2P.3I"] = length(which(m.2P.3I_X>10.83))/sum(!is.na(m.2P.3I_X))
-    table3[asmt,"C3P.2I"] = length(which(m.3P.2I.X>10.83))/sum(!is.na(m.3P.2I.X))
-    print(table3)
+  ## using two conditions to guide root finding for complex function surfaces
+  nonzero.roots <- 1 ## placeholder for condition if roots are not zero
+  roots.in.range <- 1 ## placeholder for condition of roots being out of range for distribution
+  iteration <- 0 ## counter to only try to find roots 300 times before quitting
+  while (((nonzero.roots > 0) | (roots.in.range > 0)) & (iteration < 300)) {
+    root <- multiroot(f = eq.16, start = runif(3), positive = TRUE, verbose = F)$root
+    nonzero.roots <- sum(root == c(0, 0, 0))
+    roots.in.range <- sum(root > 250) ## we know that our roots shouldn't go this high
+    iteration <- iteration + 1
   }
-  else{
-    table4[asmt-4,"CDM"] = length(which(cond.dep.X>26.12))/sum(!is.na(cond.dep.X))
-    table4[asmt-4,"CIM"] = length(which(cond.ind.X>20.52))/sum(!is.na(cond.ind.X))
-    table4[asmt-4,"C2P.3I"] = length(which(m.2P.3I_X>10.83))/sum(!is.na(m.2P.3I_X))
-    table4[asmt-4,"C3P.2I"] = length(which(m.3P.2I.X>10.83))/sum(!is.na(m.3P.2I.X))
-    print(table4)    
+  if (iteration < 300) { ## If the roots for the above were found, use them to construct table 7
+    alpha1 <- root[1] # alpha1
+    alpha2 <- root[2] # alpha2
+    alpha3 <- root[3] # alpha3
+    ## Construction of Table 7, where the last value (phi3, is calculated in the
+    ## last step of the function) and model contingency table is returned by
+    ## by the function
+    table7 <- c(
+      phi1, phi7, phi8 / (1 + alpha3), phi2 / (1 + alpha1),
+      phi10, phi4, phi5 / (1 + alpha2), phi11 * alpha3 / (alpha1 * alpha2 + alpha3),
+      phi11 * alpha1 * alpha2 / (alpha1 * alpha2 + alpha3), phi5 * alpha2 / (1 + alpha2), phi6, phi12,
+      phi2 * alpha1 / (1 + alpha1), phi8 * alpha3 / (1 + alpha3), phi9
+    )
+    matrix(c(table7, 1 - sum(table7)), 4, 4, byrow = TRUE) * sum(dist.table)
+  } else {
+    NA
   }
 }
 
+c3p2i.model <- function(dist.table) {
+  ############################
+  # Estimation of 3P&2I Model
+  ############################
+  ## The variables correspond to the variables in table 8
+  ## where A is the observed proportion contingency table
+  A <- dist.table / sum(dist.table)
+  phi1 <- A[1, 1] # phi1
+  phi2 <- A[1, 4] + A[4, 1] # phi2
+  phi4 <- A[2, 2] # phi4
+  phi5 <- A[2, 3] + A[3, 2] # phi5
+  phi6 <- A[3, 3] # phi6
+  phi7 <- A[1, 2] # phi7
+  phi8 <- A[1, 3] # phi8
+  phi9 <- A[4, 2] # phi9
+  phi10 <- A[4, 3] # phi10
+  phi11 <- A[2, 1] # phi11
+  phi12 <- A[2, 4] # phi12
+  phi13 <- A[3, 1] # phi13
+  phi14 <- A[3, 4] # phi14
+  alpha <- (A[3, 2] + A[4, 1]) / (A[1, 4] + A[2, 3]) # alpha from Eq. 17
+
+  ## Construction of Table 8, where the last value (phi3, is calculated in the
+  ## last step of the function) and model contingency table is returned by
+  ## by the function
+  table8 <- c(
+    phi1, phi7, phi8, phi2 / (1 + alpha),
+    phi11, phi4, phi5 / (1 + alpha), phi12,
+    phi13, phi5 * alpha / (1 + alpha), phi6, phi14,
+    phi2 * alpha / (1 + alpha), phi9, phi10
+  )
+  matrix(c(table8, 1 - sum(table8)), 4, 4, byrow = TRUE) * sum(dist.table)
+}
+
+cdm.model <- function(dist.table) {
+  #####################
+  # Estimation of CDM Model
+  #####################
+  ## The variables correspond to the variables in table 10
+  ## where A is the observed proportion contingency table
+  ## the piX comments correspond to the original code
+  A <- dist.table / sum(dist.table)
+  phi1 <- A[1, 1] # pi0
+  phi2 <- A[1, 2] + A[2, 1] # pi12
+  phi3 <- A[1, 3] + A[2, 2] + A[3, 1] # pi1
+  phi4 <- A[1, 4] + A[2, 3] + A[3, 2] + A[4, 1] # pi32
+  phi5 <- A[2, 4] + A[3, 3] + A[4, 2] # pi2
+  phi6 <- A[3, 4] + A[4, 3] # pi52
+  ## Equation 30
+  eq.30 <- function(x) {
+    phi2 * x / (2 + 2 * x) + phi3 * (x^2 + x / 2) / (1 + x + x^2) + phi4 * (3 / 2 * x^3 + x^2 + x / 2) / (1 + x + x^2 + x^3) + phi5 * (3 / 2 * x^2 + x + 1 / 2) / (x^2 + x + 1) + phi6 * (3 / 2 * x + 1) / (x + 1) + 3 * A[4, 4] / 2 - sum(A[, 2]) / 2 - sum(A[, 3]) - 3 * sum(A[, 4]) / 2
+  } ## solve for alpha from eq. 30
+  alpha <- multiroot(f = eq.30, start = 1, positive = TRUE, verbose = F)$root
+
+  ## Below: the values for calculation for the values in contingency Table 10
+  ## the last value (phi7) added in the next line
+  table10 <- c(
+    phi1, phi2 / (1 + alpha), phi3 / (1 + alpha + alpha^2), phi4 / (1 + alpha + alpha^2 + alpha^3),
+    phi2 * alpha / (1 + alpha), phi3 * alpha / (1 + alpha + alpha^2), phi4 * alpha / (1 + alpha + alpha^2 + alpha^3), phi5 / (1 + alpha + alpha^2),
+    phi3 * alpha^2 / (1 + alpha + alpha^2), phi4 * alpha^2 / (1 + alpha + alpha^2 + alpha^3), phi5 * alpha / (1 + alpha + alpha^2), phi6 / (1 + alpha),
+    phi4 * alpha^3 / (1 + alpha + alpha^2 + alpha^3), phi5 * alpha^2 / (1 + alpha + alpha^2), phi6 * alpha / (1 + alpha)
+  )
+  matrix(c(table10, 1 - sum(table10)), 4, 4) * sum(dist.table)
+}
+
+cim.model <- function(dist.table) {
+  ############################
+  # Estimation of CIM
+  ############################
+  ## The variables correspond to the variables in table 9
+  ## where A is the observed proportion contingency table
+  ## the piX comments correspond to the original code
+  A <- dist.table / sum(dist.table)
+  phi1 <- A[1, 1] # pi02
+  phi2 <- A[1, 2] + A[2, 1] # pi01
+  phi3 <- A[2, 2] # pi00
+  phi4 <- A[1, 3] + A[2, 4] + A[3, 1] + A[4, 2] # pi11
+  phi5 <- A[2, 3] + A[3, 2] # pi10
+  phi6 <- A[1, 4] + A[4, 1] # pi12
+  phi7 <- A[3, 3] # pi20
+  phi8 <- A[3, 4] + A[4, 3] # pi21
+  ## These are the systems of equations in eq. 23 to find alpha1 and 2
+  eq.23 <- function(x) {
+    c(
+      phi4 * (x[1] + x[1] * x[2]) / (1 + x[1] + x[2] + x[1] * x[2]) + phi5 * x[1] / (1 + x[1]) + phi6 * x[1] / (1 + x[1]) + phi7 + phi8 + A[4, 4] - sum(A[, 3]) - sum(A[, 4]),
+      phi4 * (x[2] + x[1] * x[2]) / (1 + x[1] + x[2] + x[1] * x[2]) + phi2 * x[2] / (1 + x[2]) + phi8 * x[2] / (1 + x[2]) + phi1 + phi6 + A[4, 4] - sum(A[, 1]) - sum(A[, 4])
+    )
+  }
+  root <- multiroot(f = eq.23, start = c(1, 1), positive = TRUE, verbose = F)$root
+  alpha1 <- root[1] # alpha1
+  alpha2 <- root[2] # alpha2
+  ## These are the values for calculation matching the values in Table 9
+  ## organized into their respective rows of four with
+  ## the last value (phi9) added in the next line as the remaining sum to 1
+  table.9 <- c(
+    phi1, phi2 * alpha2 / (1 + alpha2), phi4 * alpha2 / (1 + alpha1 + alpha2 + alpha1 * alpha2), phi6 / (1 + alpha1),
+    phi2 / (1 + alpha2), phi3, phi5 / (1 + alpha1), phi4 / (1 + alpha1 + alpha2 + alpha1 * alpha2),
+    phi4 * alpha1 / (1 + alpha1 + alpha2 + alpha1 * alpha2), phi5 * alpha1 / (1 + alpha1), phi7, phi8 / (1 + alpha2),
+    phi6 * alpha1 / (1 + alpha1), phi4 * alpha1 * alpha2 / (1 + alpha1 + alpha2 + alpha1 * alpha2), phi8 * alpha2 / (1 + alpha2)
+  )
+  matrix(c(table.9, 1 - sum(table.9)), 4, 4) * sum(dist.table)
+}
+
+for (asmt in 1:length(assessment.list)) {
+  assessment <- assessment.list[asmt]
+  load(str_c(getwd(), "/", assessment, ".RData"))
+  # data is stored as addition.RData, subtraction.RData, multiplication.RData, division.RData, set.RData and letterchaos.RData, and chess.RData, as found in the original paper files
+  ## Item score data is found in the res_max2 data.frame.  Item pairs are found in the the combpair table.
+  print(paste("Now computing for", assessment))
+
+  ## Set up array for chi square values for all the models
+  ## collection mechanisms for computing the % of tables meeting the correct p-value
+  n.item.pairs <- ncol(combpair)
+  chi.sq.CDM <- rep(NA, n.item.pairs)
+  chi.sq.CIM <- rep(NA, n.item.pairs)
+  chi.sq.2p3i <- matrix(NA, n.item.pairs)
+  chi.sq.3p2i <- matrix(NA, n.item.pairs)
+
+  countpair <- 0 # count pairs with more than 500 observations
+  nosolution <- rep(0, n.item.pairs) ## collect any without solutions/or insufficient model data
+
+  ## this changes the cutpoints for slow-fast to be determined by the item mean time
+  if (use_mean_fast_slow_threshold) {
+    res_max2 <- res_max2 %>%
+      left_join(res_max2 %>%
+        group_by(item_id) %>%
+        summarize(mean.t = mean(response_in_milliseconds)), by = "item_id") %>%
+      mutate(score_new = if_else(correct_answered == 1,
+        if_else(response_in_milliseconds < mean.t, 3, 2),
+        if_else(response_in_milliseconds < mean.t, 0, 1)
+      ))
+  }
+  for (pair in 1:n.item.pairs) {
+    #####################################
+    # Set new item pair
+    #####################################
+    item.1 <- combpair[1, pair]
+    item.2 <- combpair[2, pair]
+
+    #####################################
+    # Create the pair dataframe
+    #####################################
+    df.1 <- res_max2 %>%
+      filter(item_id == item.1) %>%
+      filter((score != 0) | (response_in_milliseconds == 20000)) %>%
+      arrange(days, user_id, created_UNIX) %>%
+      distinct(user_id, days, .keep_all = TRUE)
+    df.2 <- res_max2 %>%
+      filter(item_id == item.2) %>%
+      filter((score != 0) | (response_in_milliseconds == 20000)) %>%
+      arrange(days, user_id, created_UNIX) %>%
+      distinct(user_id, days, .keep_all = TRUE)
+    if (include_retesters){
+      df <- inner_join(df.1, df.2, by = c("user_id", "days"), suffix = c("_1", "_2")) %>%
+        arrange(days, user_id, desc(created_UNIX_1)) %>%
+        distinct(user_id, days, .keep_all = TRUE)      
+    } else {
+      df <- inner_join(df.1, df.2, by = c("user_id", "days"), suffix = c("_1", "_2")) %>%
+        arrange(days, user_id, desc(created_UNIX_1)) %>%
+        distinct(user_id, .keep_all = TRUE)
+    }
+    ## This is a conversion used by the authors to map item pair contingency table
+    ## values to whole numbers for ease of interpretation.
+    if (use_mean_fast_slow_threshold) {
+      TMP <- df[, c("score_new_1", "score_new_2")]
+    } else {
+      TMP <- floor((1 + df[, c("score_1", "score_2")]) * 2)
+    }
+    dist.table <- table(factor(x = TMP[, 1], levels = c(0, 1, 2, 3)), factor(x = TMP[, 2], levels = c(0, 1, 2, 3)))
+
+    ## only keeping item pairs if there are at least 500 total observations
+    if (sum(dist.table) > 500) {
+      ## For each model: use the contingency table to produce the predicted model
+      ## contingency table and then compute the chi-square values
+      model.est <- cdm.model(dist.table)
+      if ((length(which(model.est < 1)) == 0) && (length(which(model.est >= 5) >= 13))) {
+        chi.sq.CDM[pair] <- sum((model.est - dist.table)^2 / model.est)
+      }
+      model.est <- cim.model(dist.table)
+      if ((length(which(model.est < 1)) == 0) && (length(which(model.est >= 5) >= 13))) {
+        chi.sq.CIM[pair] <- sum((model.est - dist.table)^2 / model.est)
+      }
+      model.est <- c3p2i.model(dist.table)
+      if ((length(which(model.est < 1)) == 0) && (length(which(model.est >= 5) >= 13))) {
+        chi.sq.3p2i[pair] <- sum((model.est - dist.table)^2 / model.est)
+      }
+      model.est <- c2p3i.model(dist.table)
+      if ((length(which(model.est < 1)) == 0) && (length(which(model.est >= 5) >= 13))) {
+        chi.sq.2p3i[pair] <- sum((model.est - dist.table)^2 / model.est)
+      }
+    }
+  }
+  ## populates the table 3 and table 4 based on errors determined by chi square
+  ## scores consistent with p values less than 0.001 for the models
+  if (asmt < 5) {
+    table3[asmt, "CDM"] <- length(which(chi.sq.CDM > 26.12)) / sum(!is.na(chi.sq.CDM))
+    table3[asmt, "CIM"] <- length(which(chi.sq.CIM > 20.52)) / sum(!is.na(chi.sq.CIM))
+    table3[asmt, "C2P.3I"] <- length(which(chi.sq.2p3i > 10.83)) / sum(!is.na(chi.sq.2p3i))
+    table3[asmt, "C3P.2I"] <- length(which(chi.sq.3p2i > 10.83)) / sum(!is.na(chi.sq.3p2i))
+    print(table3)
+  } else {
+    table4[asmt - 4, "CDM"] <- length(which(chi.sq.CDM > 26.12)) / sum(!is.na(chi.sq.CDM))
+    table4[asmt - 4, "CIM"] <- length(which(chi.sq.CIM > 20.52)) / sum(!is.na(chi.sq.CIM))
+    table4[asmt - 4, "C2P.3I"] <- length(which(chi.sq.2p3i > 10.83)) / sum(!is.na(chi.sq.2p3i))
+    table4[asmt - 4, "C3P.2I"] <- length(which(chi.sq.3p2i > 10.83)) / sum(!is.na(chi.sq.3p2i))
+    print(table4)
+  }
+}
 #####################
 # CHESS DATA SET
 #####################
-asmt = 7
-assessment = assessment.list[asmt]   
-load(str_c(getwd(),"/",assessment,".RData"))
+asmt <- 7
+assessment <- assessment.list[asmt]
+load(str_c(getwd(), "/", assessment, ".RData"))
 print(paste("Now computing for", assessment))
-n.item.pairs=780 # number of item pairs
-countpair=0
-pair = 1
-cond.dep.par=matrix(NA,n.item.pairs,7)
-cond.dep.X=rep(NA,n.item.pairs)
-cond.ind.par=matrix(NA,n.item.pairs,10)
-cond.ind.X=rep(NA,n.item.pairs)
-m.2P.3I_par=matrix(NA,n.item.pairs,14)
-m.2P.3I_X=matrix(NA,n.item.pairs)
-m.3P.2I.par=matrix(NA,n.item.pairs,14)
-m.3P.2I.X=matrix(NA,n.item.pairs)
+n.item.pairs <- 780 # number of item pairs for chess
+pair <- 1 ## This is the indexer for the irregular chess dataset setup
+chi.sq.CDM <- rep(NA, n.item.pairs)
+chi.sq.CIM <- rep(NA, n.item.pairs)
+chi.sq.2p3i <- matrix(NA, n.item.pairs)
+chi.sq.3p2i <- matrix(NA, n.item.pairs)
 
-countpair=0 # count pairs with more than 500 observations
-nosolution=rep(0,n.item.pairs)
-for (r in 2:40){
-  for (c in 1:(r-1)){
+for (r in 2:40) {
+  for (c in 1:(r - 1)) {
     #####################
     # Extract item pair contingency table for chess
     #####################
-    dist.table=table(factor(x=Y[,r],levels=c(0,0.5,1,1.5)),factor(x=Y[,c],levels=c(0,0.5,1,1.5)))
-    A=dist.table/sum(dist.table)
-    countpair=countpair+1
-    #####################
-    # Estimation of CDM
-    #####################
-    pi0=A[1,1] #pi0
-    pi12=A[1,2]+A[2,1] #pi12
-    pi1=A[1,3]+A[2,2]+A[3,1] #pi1
-    pi32=A[1,4]+A[2,3]+A[3,2]+A[4,1] #pi32
-    pi2=A[2,4]+A[3,3]+A[4,2] #pi2
-    pi52=A[3,4]+A[4,3] #pi52
-    
-    f.cond.dep=function(x){
-      pi12*x/(2+2*x)+pi1*(x^2+x/2)/(1+x+x^2)+pi32*(3/2*x^3+x^2+x/2)/(1+x+x^2+x^3)+pi2*(3/2*x^2+x+1/2)/(x^2+x+1)+pi52*(3/2*x+1)/(x+1)+3*A[4,4]/2-sum(A[,2])/2-sum(A[,3])-3*sum(A[,4])/2
+    dist.table <- table(factor(x = Y[, r], levels = c(0, 0.5, 1, 1.5)), factor(x = Y[, c], levels = c(0, 0.5, 1, 1.5)))
+    ## For each model: use the contingency table to produce the predicted model
+    ## contingency table and then compute the chi-square values
+    model.est <- cdm.model(dist.table)
+    if ((length(which(model.est < 1)) == 0) && (length(which(model.est >= 5) >= 13))) {
+      chi.sq.CDM[pair] <- sum((model.est - dist.table)^2 / model.est)
     }
-    x=multiroot(f=f.cond.dep,start=1,positive=TRUE,verbose = F)$root
-    
-    model.cond.dep=c(pi0,
-                     pi12/(1+x),
-                     pi1/(1+x+x^2),
-                     pi32/(1+x+x^2+x^3),
-                     pi12*x/(1+x),
-                     pi1*x/(1+x+x^2),
-                     pi32*x/(1+x+x^2+x^3),
-                     pi2/(1+x+x^2),
-                     pi1*x^2/(1+x+x^2),
-                     pi32*x^2/(1+x+x^2+x^3),
-                     pi2*x/(1+x+x^2),
-                     pi52/(1+x),
-                     pi32*x^3/(1+x+x^2+x^3),
-                     pi2*x^2/(1+x+x^2),
-                     pi52*x/(1+x))
-    model.cond.dep=c(model.cond.dep,1-sum(model.cond.dep))
-    est_TS=matrix(model.cond.dep,4,4)*sum(dist.table)  
-    ## Create model contingency table
-    if((length(which(est_TS<1))==0)&&(length(which(est_TS>=5)>=13))){cond.dep.X[pair]=sum((est_TS-dist.table)^2/est_TS)}  
-    ############################
-    # Estimation of CIM
-    ############################
-    pi02=A[1,1] #pi02
-    pi01=A[1,2]+A[2,1] #pi01
-    pi10=A[2,3]+A[3,2] #pi10
-    pi21=A[3,4]+A[4,3] #pi21
-    pi11=A[1,3]+A[2,4]+A[3,1]+A[4,2] #pi11
-    pi12=A[1,4]+A[4,1] #pi12
-    pi00=A[2,2] #pi00
-    pi20=A[3,3] #pi20
-    
-    f.cond.ind=function(x){
-      c(pi11*(x[1]+x[1]*x[2])/(1+x[1]+x[2]+x[1]*x[2])+pi10*x[1]/(1+x[1])+pi12*x[1]/(1+x[1])+pi20+pi21+A[4,4]-sum(A[,3])-sum(A[,4]),
-        pi11*(x[2]+x[1]*x[2])/(1+x[1]+x[2]+x[1]*x[2])+pi01*x[2]/(1+x[2])+pi21*x[2]/(1+x[2])+pi02+pi12+A[4,4]-sum(A[,1])-sum(A[,4]))
+    model.est <- cim.model(dist.table)
+    if ((length(which(model.est < 1)) == 0) && (length(which(model.est >= 5) >= 13))) {
+      chi.sq.CIM[pair] <- sum((model.est - dist.table)^2 / model.est)
     }
-    root=multiroot(f=f.cond.ind,start=c(1,1),positive=TRUE, verbose = F)$root
-
-    alpha1=root[1] #alpha1
-    alpha2=root[2] #alpha2
-    
-    model.cond.ind=c(pi02,
-                     pi01*alpha2/(1+alpha2),
-                     pi11*alpha2/(1+alpha1+alpha2+alpha1*alpha2),
-                     pi12/(1+alpha1),
-                     pi01/(1+alpha2),
-                     pi00,
-                     pi10/(1+alpha1),
-                     pi11/(1+alpha1+alpha2+alpha1*alpha2),
-                     pi11*alpha1/(1+alpha1+alpha2+alpha1*alpha2),
-                     pi10*alpha1/(1+alpha1),
-                     pi20,
-                     pi21/(1+alpha2),
-                     pi12*alpha1/(1+alpha1),
-                     pi11*alpha1*alpha2/(1+alpha1+alpha2+alpha1*alpha2),
-                     pi21*alpha2/(1+alpha2))
-    
-    est_TH=matrix(c(model.cond.ind,1-sum(model.cond.ind)),4,4)*sum(dist.table)  
-    ## Create model contingency table
-    if((length(which(est_TH<1))==0)&&(length(which(est_TH>=5)>=13))){cond.ind.X[pair]=sum((est_TH-dist.table)^2/est_TH)}
-    ############################
-    # Estimation of 2P&3I
-    ############################
-    phi1=A[1,1] #phi1
-    phi2=A[1,4]+A[4,1] #phi2
-    phi4=A[2,2] #phi4
-    phi5=A[2,3]+A[3,2] #phi5
-    phi6=A[3,3] #phi6
-    phi7=A[1,2] #phi7
-    phi8=A[1,3]+A[4,2] #phi8
-    phi9=A[4,3] #phi9
-    phi10=A[2,1] #phi10
-    phi11=A[2,4]+A[3,1] #phi11
-    phi12=A[3,4] #phi12
-    
-    f_m.2P.3I=function(x){
-      c((A[3,1]+A[4,1])/x[1]-(phi2)/(1+x[1])-(phi11)*x[2]/(x[1]*x[2]+x[3]),
-        (A[3,1]+A[3,2])/x[2]-(phi5)/(1+x[2])-(phi11)*x[1]/(x[1]*x[2]+x[3]),
-        (A[2,4]+A[4,2])/x[3]-(phi8)/(1+x[3])-(phi11)/(x[1]*x[2]+x[3]))
+    model.est <- c3p2i.model(dist.table)
+    if ((length(which(model.est < 1)) == 0) && (length(which(model.est >= 5) >= 13))) {
+      chi.sq.3p2i[pair] <- sum((model.est - dist.table)^2 / model.est)
     }
-    
-    S1=1
-    S2=1
-    counter=0
-    while(((S1>0)|(S2>0))&(counter<500)){ 
-      root=multiroot(f=f_m.2P.3I,start=runif(3),positive=TRUE, verbose = F)$root
-      S1=sum(root==c(0,0,0))
-      S2=sum(root>250)
-      counter=counter+1
+    model.est <- c2p3i.model(dist.table)
+    if ((length(which(model.est < 1)) == 0) && (length(which(model.est >= 5) >= 13))) {
+      chi.sq.2p3i[pair] <- sum((model.est - dist.table)^2 / model.est)
     }
-    if(counter>=500){nosolution[pair]=1}
-    if(counter<500){
-      alpha1=root[1] #alpha1
-      alpha2=root[2] #alpha2
-      alpha3=root[3] #alpha3
-      model_m.2P.3I=c(phi1,
-                      phi7,
-                      phi8/(1+alpha3),
-                      phi2/(1+alpha1),
-                      phi10,
-                      phi4,
-                      phi5/(1+alpha2),
-                      phi11*alpha3/(alpha1*alpha2+alpha3),
-                      phi11*alpha1*alpha2/(alpha1*alpha2+alpha3),
-                      phi5*alpha2/(1+alpha2),
-                      phi6,
-                      phi12,
-                      phi2*alpha1/(1+alpha1),
-                      phi8*alpha3/(1+alpha3),
-                      phi9)
-      est_Tm.2P.3I=matrix(c(model_m.2P.3I,1-sum(model_m.2P.3I)),4,4,byrow=TRUE)*sum(dist.table)
-      if((length(which(est_Tm.2P.3I<1))==0)&&(length(which(est_Tm.2P.3I>=5)>=13))){m.2P.3I_X[pair]=sum((est_Tm.2P.3I-dist.table)^2/est_Tm.2P.3I)}
-    }
-    
-    ############################
-    # Estimation of 3P&2I
-    ############################
-    phi1=A[1,1] #phi1
-    phi2=A[1,4]+A[4,1] #phi2
-    phi4=A[2,2] #phi4
-    phi5=A[2,3]+A[3,2] #phi5
-    phi6=A[3,3] #phi6
-    phi7=A[1,2] #phi7
-    phi8=A[1,3] #phi8
-    phi9=A[4,2] #phi9
-    phi10=A[4,3] #phi10
-    phi11=A[2,1] #phi11
-    phi12=A[2,4] #phi12
-    phi13=A[3,1] #phi13
-    phi14=A[3,4] #phi14
-    alpha=(A[3,2]+A[4,1])/(A[1,4]+A[2,3]) #alpha
-    
-    model.m.3P.2I=c(phi1,
-                    phi7,
-                    phi8,
-                    phi2/(1+alpha),
-                    phi11,
-                    phi4,
-                    phi5/(1+alpha),
-                    phi12,
-                    phi13,
-                    phi5*alpha/(1+alpha),
-                    phi6,
-                    phi14,
-                    phi2*alpha/(1+alpha),
-                    phi9,
-                    phi10)
-    model.m.3P.2I=c(model.m.3P.2I,1-sum(model.m.3P.2I))
-    est_Tm.3P.2I=matrix(model.m.3P.2I,4,4,byrow=TRUE)*sum(dist.table)
-    if((length(which(est_Tm.3P.2I<1))==0)&&(length(which(est_Tm.3P.2I>=5)>=13))){m.3P.2I.X[pair]=sum((est_Tm.3P.2I-dist.table)^2/est_Tm.3P.2I)}
-    pair=pair+1
+    pair <- pair + 1
   }
 }
-table4[asmt-4,"CDM"] = length(which(cond.dep.X>26.12))/sum(!is.na(cond.dep.X))
-table4[asmt-4,"CIM"] = length(which(cond.ind.X>20.52))/sum(!is.na(cond.ind.X))
-table4[asmt-4,"C2P.3I"] = length(which(m.2P.3I_X>10.83))/sum(!is.na(m.2P.3I_X))
-table4[asmt-4,"C3P.2I"] = length(which(m.3P.2I.X>10.83))/sum(!is.na(m.3P.2I.X))
-print(table4)    
-
+table4[asmt - 4, "CDM"] <- length(which(chi.sq.CDM > 26.12)) / sum(!is.na(chi.sq.CDM))
+table4[asmt - 4, "CIM"] <- length(which(chi.sq.CIM > 20.52)) / sum(!is.na(chi.sq.CIM))
+table4[asmt - 4, "C2P.3I"] <- length(which(chi.sq.2p3i > 10.83)) / sum(!is.na(chi.sq.2p3i))
+table4[asmt - 4, "C3P.2I"] <- length(which(chi.sq.3p2i > 10.83)) / sum(!is.na(chi.sq.3p2i))
+print(table4)
 ```
 
 ```{r}
-table3
-```
-
-```{r}
-table4
-```
-```{r}
-# options(knitr.table.format = function() {
-#   if (knitr::is_latex_output())
-#     "latex" else "pipe"
-# })
 knitr::kable(table3)
 ```
 ```{r}
-# options(knitr.table.format = function() {
-#   if (knitr::is_latex_output())
-#     "latex" else "pipe"
-# })
 knitr::kable(table4)
 ```
 
-### Key analysis
+### Key analysis results
 
-The analyses as specified in the analysis plan.  
+Tables 3 and 4, as shown above, have been exactly reproduced according to the results of the paper. The data reported above should reflect and be identical to their results tables (Table 3 and Table 4). These tables show the percentage of all the contingency tables across all the models that fall outside of their p-value of 0.001. Each number in every table entry indicates what percentage of this number of remaining item pairs has a $\chi^2$-value that exceeds the p = 0.001 threshold for the corresponding number of degrees of freedom (meaning, of all the thousands of tests run, what percent of these models fail to reject the null hypothesis).
 
-I believe I have found a filtering error on their part, leading them to accidentally throw out most of their data. So I re-ran the code for Table 3, correcting by including all item pairs as they describe, and it changes the results. This however, does NOT change their overall conclusions, but it *would* change the 'Discussion' section of their paper. 
+### Exploratory analyses discussion
 
-I have included my data preparation and overall results below. Note: the results shown do not represent this adjustment; the data reported below should reflect and be identical to their results tables (Table 3 and Table 4). These tables show the percentage of all the contingency tables across all the models that fall outside of their p-value of 0.001. Each number in every table entry indicates what percentage of this number of remaining item pairs has a $\chi^2$-value that exceeds the p = 0.001 threshold for the corresponding number of degrees of freedom (meaning, of all the thousands of tests run, what percent of these models fail to reject the null hypothesis).
-
-
-
-###Exploratory analyses
-
-I am able to reproduce their results using their code, but I think I have found an error in their code that reduces their sample of item pairs. 
+The first reproductions were not successful, because I failed to use the `UNIX_created` variables in the datasets, as they were not referenced in the paper or the code. By understanding the code used to generate their results, it appears that they have filtered and aligned the data so that the first instance of an individual with an item is the one used in the analysis (by assuming it has the smallest `UNIX_created` number). Not using this variable caused slight deviations in each model's results from those of the original authors. 
 
 In their code for item pair creation (except chess), they remove the top and bottom observations so they can use a "sort-->concatenate" matching method, where they sort all observations by day, then by user, then by item, then by a "UNIX" variable (that serves to select between responses by an individual if they did an item more than once on the same day). They take this full matrix, copy it and sort the copy, and then remove the top observation from the original and the bottom of the copy before concatenating them and finally looking for matches. Their method has the effect of matching the lowest UNIX number of the second item in the pair with the lowest in the first. It would eliminate time where a participant did both items in the pair on another day. I think this is an oversight. If both items are done on another occasion, the model should still be valid. Additionally, the removal of the top value and bottom value does occasionally remove a data point in some of the data pairs. 
 
-The chess set comes formatted differently than the other data, and, if this filtering issue was a problem, it was done before the publishing of the data.
+The subjects being tested are in the process of learning the domain area (e.g., arithmetic). We assume that as they learn, the underlying latent mechanisms that influence speed and accuracy might change. Thus, if a student takes the same two items on another day, the models can, and should in this author's opinion, include this new observation. This change would serve to strengthen the claims of the authors, because, we presume, that on average at a later date a retesting student's latent processes would mature. When running this analysis by including retesters, all the original conclusions are upheld. Users may set the value `include_retesters` to `True` to see the effects of including instances of other-day restesting.
 
-## Discussion
+## Discussion and Improved Reproduction
 
-### Summary of Reproduction Attempt
-I was successfully able to reproduce the models and the data tables, however it took me a while to figure out why instances were slightly different (such as the removal of the top and bottom observations when constructing the item pairs) when I was comparing my code outputs to theirs.
+The original authors wrote, "We choose, quite arbitrarily, to define fast responses as those responses that are given before half of the time has expired and to call all other responses slow responses." This arbitrary cutoff of 10 seconds for fast vs. slow may work for illustrative purposes, but may not be representative of what is fast or slow for a given domain or item. To explore the arbitrariness of this cutoff, a second analysis was run where the distinction between fast vs slow was defined by whether a participant was faster or slower than the mean response time for a given item. (This analysis excludes chess. The chess set comes formatted differently than the other data, making this analysis impossible.)
 
-I was able to reproduce their models, and table with my code and check it against theirs. My numbers, if I use their filtering, match theirs perfectly.
+This analysis resulted in perturbations to overall results in table 3 for most models, but for the 3-person-2-item (3P2I) model it led to a large degradation of its performance. When the fast vs. slow cutoff was set non-arbitrarily and was capturing some amount of item information, it could not distinguish as easily, with the new contingencies tables having a more equal distribution of fast and slow. Cursory analysis showed that the 3P2I model would outperform the CIM and CDM models on some of the distribution tables where proportions of fast and slow responses were imbalanced. It could be that the 3P2I model could more easily classify if there were more of an imbalance in speed types. By removing that imbalance, the model degraded.
 
-### Commentary
-I will have one of my advisors review my code and confirm my observations about the matching algorithm they use before contacting them, as he actually knows at least some of the authors.
+By removing the arbitrariness of the cutoff, the quantity of valid item pair contingency table predictions for each model increased and became comparable across all models. In other words, by making the classification of "fast" less arbitrary, the models have more valid model predictions and more item pairs shared between them. This strengthens the confidence of the conclusions made made by using it. 
 
+This new analysis can be performed by adjusting the boolean variable `use_mean_fast_slow_threshold` to `True`, which will run all the above analyses with the new fast-slow cut scores. 
 
+It should be noted that the above code for both the reproduction and this second analysis run much faster than the code of the original authors, as it removes the costly process of duplicating large arrays to create the contingency tables for item pairs. 
+
+### Summary of Reproduction
+
+The code above can successfully reproduce tables 3 and 4 from the original paper exactly. Additionally, it has been set up for future users to test how the adjustment of the fast-slow cutoff changes the performance overall and especially on the 3P2I model. Moreover, users can also choose to include retesters in the dataset as well, to further bolster the testing of the models. Not including the reasoning for the use of the  `UNIX_created` variable was an oversight, but it allowed this author to investigate the question of whether to include students testing an item pair at a later date.
